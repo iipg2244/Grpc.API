@@ -1,0 +1,14 @@
+services:
+  client-api:
+    networks:
+      - ApplicationNetwork
+  grpc-api:
+    networks:
+      - ApplicationNetwork
+
+# docker network create -d bridge --attachable my-bridge
+# docker network rm -f my-bridge
+networks:
+  ApplicationNetwork:
+    name: my-bridge
+    external: true

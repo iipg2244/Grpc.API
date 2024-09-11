@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.API";
+
+package SearchEngine;
+
+service Finder {
+  rpc GetSearch (QueryRequest) returns (QueryReply);
+}
+
+message QueryRequest {
+  string region = 1;
+  string consultation = 2;
+}
+
+message QueryReply {
+  string result = 1;
+}
