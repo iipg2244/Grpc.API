@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 ARG USERNAME=non-root-user
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
@@ -19,7 +19,7 @@ RUN groupadd --gid "$USER_GID" "$USERNAME" \
     && chmod 0440 "/etc/sudoers.d/$USERNAME" \
     && apt-get clean
 
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR "/build"
 COPY ["./server/Client.API/Client.API.csproj", "./server/NuGet.Config", "./server/global.json", "./Client.API/"]
 RUN dotnet restore "./Client.API/Client.API.csproj" --configfile "./Client.API/NuGet.Config" --packages .nuget
